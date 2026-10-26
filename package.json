@@ -1,0 +1,17 @@
+{
+  "name": "raeslab-offboarding",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static offboarding questionnaire for data & code (Raes Lab, VIB). The site lives in docs/; Node is only needed for the tests.",
+  "scripts": {
+    "serve": "node tests/serve.js",
+    "test": "playwright test",
+    "pdf:samples": "node tests/make_sample_pdfs.js test-results/samples",
+    "screenshots": "node tests/make_screenshots.js docs/img",
+    "test:install": "playwright install chromium",
+    "vendor": "python scripts/fetch_vendor.py"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}

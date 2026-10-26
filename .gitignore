@@ -1,0 +1,34 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Node / Playwright (tests only — the site itself has no build step)
+node_modules/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Exported reports should never end up in the repository
+*.pdf
+
+# Editors / OS (shared VS Code config is committed)
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,21 @@
+[project]
+name = "raeslab-offboarding"
+version = "1.0.0"
+description = "Helper scripts for the static offboarding site (vendoring, PDF rendering for review)."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "ruff",
+    "pypdf",
+    "pypdfium2",
+    "pillow",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100

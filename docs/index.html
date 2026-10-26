@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data &amp; code offboarding · Raes Lab · VIB</title>
+  <meta name="description" content="Offboarding checklist for data and code in the Raes Lab (VIB). Fill in, download the PDF report and send it to your supervisor.">
+  <meta name="theme-color" content="#0F3F93">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#form-root">Skip to the questionnaire</a>
+
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <span class="topbar__brand">VIB<span class="topbar__dot">.</span>be</span>
+      <span class="topbar__group" data-config="groupName">Raes Lab</span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="./" aria-label="Home">
+        <img src="assets/vib-logo.svg" alt="VIB" width="102" height="55">
+      </a>
+      <div class="site-header__title">
+        <span class="site-header__eyebrow" data-config="organisation">VIB-KU Leuven Center for Microbiology</span>
+        <span class="site-header__name"><span data-config="groupName">Raes Lab</span> · Offboarding</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <h1>Leaving the lab? Hand over your data &amp; code.</h1>
+        <p class="lead">Use this checklist to confirm that all research data and code you worked on are stored in the right place and can be picked up by your colleagues.</p>
+      </div>
+      <ol class="steps" aria-label="How it works">
+        <li><span class="steps__n">1</span><span><strong>Fill in</strong> the questionnaire. Add one block per project.</span></li>
+        <li><span class="steps__n">2</span><span><strong>Download</strong> the PDF report. It is timestamped automatically.</span></li>
+        <li><span class="steps__n">3</span><span><strong>Send</strong> the PDF to <span data-config="sendTo">your supervisor</span>.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="container notice" role="note">
+    <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 15h-2v-6h2v6Zm0-8h-2V7h2v2Z"/></svg>
+    <p>Your answers are <strong>saved automatically in this browser</strong> on this computer, so you can close the page and continue later. Nothing is sent anywhere: only the PDF you download leaves your computer.</p>
+  </div>
+
+  <main class="container layout">
+    <form id="form-root" class="questionnaire" novalidate autocomplete="off">
+      <noscript><p class="warn-box">This questionnaire needs JavaScript to work.</p></noscript>
+    </form>
+
+    <aside class="sidebar" aria-label="Progress and export">
+      <div class="sidebar__card">
+        <h2 class="sidebar__title">Your progress</h2>
+        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress">
+          <div class="progress__bar" id="progress-bar"></div>
+        </div>
+        <p class="progress__label" id="progress-label">0% complete</p>
+        <p class="save-status" id="save-status" aria-live="polite">Not saved yet</p>
+
+        <div class="open-items" id="open-items"></div>
+
+        <button type="button" class="btn btn--primary btn--block" data-action="export">Download PDF report</button>
+        <p class="sidebar__hint">Send the PDF to <span data-config="sendTo">your supervisor</span>.</p>
+        <button type="button" class="btn btn--link" data-action="reset">Clear all answers</button>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <img src="assets/vib-logo-white.svg" alt="VIB" width="125" height="84">
+      <div>
+        <p><strong data-config="groupName">Raes Lab</strong> · <span data-config="organisation">VIB-KU Leuven Center for Microbiology</span></p>
+        <p class="site-footer__small">Data &amp; code offboarding checklist. Answers stay in your browser (localStorage) until you clear them.</p>
+      </div>
+    </div>
+  </footer>
+
+  <dialog id="export-dialog" class="dialog" aria-labelledby="export-dialog-title">
+    <form method="dialog">
+      <h2 id="export-dialog-title">Some items are still open</h2>
+      <p id="export-dialog-text"></p>
+      <ul id="export-dialog-list" class="dialog__list"></ul>
+      <div class="dialog__actions">
+        <button class="btn btn--secondary" value="review">Review open items</button>
+        <button class="btn btn--primary" value="export">Download anyway</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="confirm-dialog" class="dialog" aria-labelledby="confirm-dialog-title">
+    <form method="dialog">
+      <h2 id="confirm-dialog-title">Are you sure?</h2>
+      <p id="confirm-dialog-text"></p>
+      <div class="dialog__actions">
+        <button class="btn btn--secondary" value="cancel">Cancel</button>
+        <button class="btn btn--danger" value="ok" id="confirm-dialog-ok">Delete</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="vendor/jspdf/jspdf.umd.min.js" defer></script>
+  <script src="vendor/jspdf/jspdf.plugin.autotable.min.js" defer></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/logo.js" defer></script>
+  <script src="js/model.js" defer></script>
+  <script src="js/pdf.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

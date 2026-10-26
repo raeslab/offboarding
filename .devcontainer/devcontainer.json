@@ -1,0 +1,33 @@
+{
+  "name": "raeslab-offboarding",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "remoteUser": "vscode",
+  "mounts": [
+    "source=claude-code-config-${devcontainerId},target=/home/vscode/.claude,type=volume",
+    "source=offboarding-node-modules-${devcontainerId},target=/workspace/node_modules,type=volume"
+  ],
+  "forwardPorts": [4173],
+  "portsAttributes": {
+    "4173": { "label": "Offboarding site", "onAutoForward": "notify" }
+  },
+  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.claude /workspace/node_modules && uv sync && npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.debugpy",
+        "charliermarsh.ruff",
+        "ms-playwright.playwright",
+        "anthropic.claude-code"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/home/vscode/.venv/bin/python"
+      }
+    }
+  }
+}
